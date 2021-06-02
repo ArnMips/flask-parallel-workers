@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>How many prime number up to...?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <div class="centered_text">
+        <h1>How many prime number up to...?</h1>
+        <a href="/reset_data" target="_blank">Reset data</a>
+        <a href="/reset_in_progress" target="_blank">Reset IN_PROGRESS</a>
+    </div>
+    <br>
+    <table class="styled-table">
+        <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Worker pid</th>
+            <th>Up to number</th>
+            <th>Prime count</th>
+            <th>Time[ms]</th>
+        </tr>
+        {% for task_info in task_infos %}
+        <tr>
+            <td>{{task_info.id}}</td>
+            <td>{{task_info.status}}</td>
+            <td>{{task_info.worker_pid}}</td>
+            <td>{{task_info.number}}</td>
+            <td>{{task_info.prime_count}}</td>
+            <td>{{task_info.time}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
