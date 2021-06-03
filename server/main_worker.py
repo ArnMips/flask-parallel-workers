@@ -2,9 +2,13 @@ from flask import Flask, render_template, make_response, request
 from flask.json import jsonify
 import random
 import logging
+import sys
 
 from werkzeug.wrappers import response
 from task_info import TaskInfos
+
+host_arg = sys.argv[1]
+port_arg = int(sys.argv[2])
 
 task_infos = TaskInfos()
 log = logging.getLogger()
@@ -83,5 +87,4 @@ if __name__ == "__main__":
         generate_data()
 
     log.info("Running server...")
-    # app.run(host='0.0.0.0', port=8000)
-    app.run()
+    app.run(host=host_arg, port=port_arg)

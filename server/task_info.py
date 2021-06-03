@@ -10,11 +10,13 @@ class TaskStatus(str, Enum):
 
 
 class TaskInfos():
-    def __init__(self,) -> None:
+    def __init__(self) -> None:
         #     [{'status': TaskStatus.TODO.name, worker_pid
         # 'number': 3, 'prime_count': True, 'time': 123}]
         self._dump_file = 'data/tasks_infos.json'
         self._tasks = []  # type: list[dict]
+        if not os.path.exists('data'):
+            os.mkdir('data')
         if os.path.exists(self._dump_file):
             with open(self._dump_file, 'r') as f:
                 self._tasks = json.load(f)

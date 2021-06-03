@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import time
+import platform
 
 #python .\runner.py http://127.0.0.1 5000 100
 
@@ -12,7 +13,8 @@ workers_num_arg = int(sys.argv[3])
 def run_workers(host: str, port: str, workers_num: int) -> [subprocess.Popen]:
     workers = []
     for _ in range(workers_num):
-        worker = subprocess.Popen(["python", "worker.py", host, port])
+        prog = "python" if platform.system() == 'Windows' else "python3"
+        worker = subprocess.Popen([prog, "worker.py", host, port])
         workers.append(worker)
     return workers
 
